@@ -28,7 +28,12 @@ namespace Silanis.ESL.API
     {
                 get; set;
         }
-    
+
+        [JsonProperty("externalSigningAuth")]
+        public ExternalSigningAuth ExternalSigningAuth
+        {
+            get; set;
+        }
 		    
     [JsonProperty("company")]
     public String Company

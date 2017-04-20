@@ -16,6 +16,7 @@ namespace Silanis.ESL.SDK
 			this.authentication = authentication;
 			this.GroupId = null;
             this.KnowledgeBasedAuthentication = null;
+            this.ExternalSigningAuth = null;
 		}
 
 		public Signer( GroupId groupId )
@@ -26,6 +27,7 @@ namespace Silanis.ESL.SDK
 			LastName = null;
 			authentication = new Authentication(AuthenticationMethod.EMAIL);
             this.KnowledgeBasedAuthentication = null;
+            this.ExternalSigningAuth = null;
 		}
         
         public Signer(string id)
@@ -38,6 +40,7 @@ namespace Silanis.ESL.SDK
             this.Id = id;
             authentication = new Authentication(Silanis.ESL.SDK.AuthenticationMethod.EMAIL);
             this.KnowledgeBasedAuthentication = null;
+            this.ExternalSigningAuth = null;
         }
 
 		public string Id {
@@ -59,6 +62,11 @@ namespace Silanis.ESL.SDK
         public KnowledgeBasedAuthentication KnowledgeBasedAuthentication
         {
             get; set;
+        }
+
+        public ExternalSigningAuth ExternalSigningAuth
+        {
+            get;set;
         }
 
         private string email;

@@ -389,6 +389,10 @@
     <Compile Include="src\Builder\DocumentVisibilityConfigurationBasedOnSignerBuilder.cs" />
     <Compile Include="src\Internal\Conversion\DocumentVisibilityConfigurationConverter.cs" />
     <Compile Include="src\Internal\Conversion\DocumentVisibilityConverter.cs" />
+    <Compile Include="src\Internal\Conversion\ExternalSigningAuthConverter.cs" />
+    <Compile Include="src\Builder\ExternalSigningAuthBuilder.cs" />
+    <Compile Include="src\Models\ExternalSigningAuth.cs" />
+    <Compile Include="src\ExternalSigningAuth.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

@@ -53,6 +53,8 @@ namespace SDK.Tests
 			Assert.AreEqual(apiSigner1.LastName, sdkSigner1.LastName);
 			Assert.AreEqual(apiSigner1.Company, sdkSigner1.Company);
 			Assert.AreEqual(apiSigner1.Title, sdkSigner1.Title);
+            Assert.AreEqual(apiSigner1.ExternalSigningAuth.ProviderKey, sdkSigner1.ExternalSigningAuth.ProviderKey);
+            Assert.AreEqual(apiSigner1.ExternalSigningAuth.IdentityInfo, sdkSigner1.ExternalSigningAuth.IdentityInfo);
 		}
 
 		[Test()]
@@ -124,6 +126,8 @@ namespace SDK.Tests
             Assert.AreEqual(apiRole.Reassign, sdkSigner1.CanChangeSigner);
             Assert.AreEqual(apiRole.EmailMessage.Content, sdkSigner1.Message);
             Assert.AreEqual(apiSigner1.Delivery.Email, sdkSigner1.DeliverSignedDocumentsByEmail);
+            Assert.AreEqual(apiSigner1.ExternalSigningAuth.ProviderKey, sdkSigner1.ExternalSigningAuth.ProviderKey);
+            Assert.AreEqual(apiSigner1.ExternalSigningAuth.IdentityInfo, sdkSigner1.ExternalSigningAuth.IdentityInfo);
 
             string attachmentName = apiRole.AttachmentRequirements[0].Name;
             Silanis.ESL.API.AttachmentRequirement apiAttachment = apiRole.AttachmentRequirements[0];
@@ -151,6 +155,8 @@ namespace SDK.Tests
 					.WithDescription("Please upload your scanned driver's license")
 					.IsRequiredAttachment()
 					.Build())
+                .WithExternalSigningAuth(ExternalSigningAuthBuilder.ForProvider ("DIGIPASS")
+                    .WithIdentityInfo ("Xz3AwPp9xazJ0ku5CZnlmgAx2DlJJGw0k0kd8SHkAeT"))
 				.Build();
 		}
 
@@ -164,6 +170,11 @@ namespace SDK.Tests
             apiSigner.LastName = "Signer last name";
             apiSigner.Company = "ABC Inc.";
             apiSigner.Title = "Doctor";
+
+            Silanis.ESL.API.ExternalSigningAuth externalSigningAuth = new Silanis.ESL.API.ExternalSigningAuth();
+            externalSigningAuth.ProviderKey = "DIGIPASS";
+            externalSigningAuth.IdentityInfo = "Xz3AwPp9xazJ0ku5CZnlmgAx2DlJJGw0k0kd8SHkAeT";
+            apiSigner.ExternalSigningAuth = externalSigningAuth;
 
             Silanis.ESL.API.Delivery delivery = new Silanis.ESL.API.Delivery();
             delivery.Download = true;

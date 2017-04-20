@@ -22,6 +22,7 @@ namespace Silanis.ESL.SDK.Builder
         private GroupId groupId;
 		private IList<AttachmentRequirement> attachments = new List<AttachmentRequirement>();
         private KnowledgeBasedAuthentication knowledgeBasedAuthentication;
+        private ExternalSigningAuth externalSigningAuth;
 
         private SignerBuilder(string signerEmail)
 		{
@@ -205,6 +206,17 @@ namespace Silanis.ESL.SDK.Builder
             return this;
         }
 
+        public SignerBuilder WithExternalSigningAuth (ExternalSigningAuth externalSigningAuth)
+        {
+            this.externalSigningAuth = externalSigningAuth;
+            return this;
+        }
+
+        public SignerBuilder WithExternalSigningAuth (ExternalSigningAuthBuilder externalSigningAuthBuilder)
+        {
+            return WithExternalSigningAuth(externalSigningAuthBuilder.Build());
+        }
+
         private Signer BuildGroupSigner()
         {            
             Signer result = new Signer(groupId);
@@ -252,6 +264,7 @@ namespace Silanis.ESL.SDK.Builder
             result.Id = id;
 			result.Attachments = attachments;
             result.KnowledgeBasedAuthentication = knowledgeBasedAuthentication;
+            result.ExternalSigningAuth = externalSigningAuth;
 			            
             return result;
         }

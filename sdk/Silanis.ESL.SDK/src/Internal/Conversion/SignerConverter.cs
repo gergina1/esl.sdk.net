@@ -147,6 +147,7 @@ namespace Silanis.ESL.SDK
 					signer.Delivery.Email = sdkSigner.DeliverSignedDocumentsByEmail;
 				}
                 signer.KnowledgeBasedAuthentication = new KnowledgeBasedAuthenticationConverter(sdkSigner.KnowledgeBasedAuthentication).ToAPIKnowledgeBasedAuthentication();
+                signer.ExternalSigningAuth = new ExternalSigningAuthConverter(sdkSigner.ExternalSigningAuth).ToAPIExternalSigningAuth();
 			}
 			else
 			{
@@ -216,7 +217,8 @@ namespace Silanis.ESL.SDK
                 .WithLastName(eslSigner.LastName)
                 .WithCompany(eslSigner.Company)
                 .WithTitle(eslSigner.Title)
-                .ChallengedWithKnowledgeBasedAuthentication(new KnowledgeBasedAuthenticationConverter(eslSigner.KnowledgeBasedAuthentication).ToSDKKnowledgeBasedAuthentication());
+                .ChallengedWithKnowledgeBasedAuthentication(new KnowledgeBasedAuthenticationConverter(eslSigner.KnowledgeBasedAuthentication).ToSDKKnowledgeBasedAuthentication())
+                .WithExternalSigningAuth(new ExternalSigningAuthConverter(eslSigner.ExternalSigningAuth).ToSDKExternalSigningAuth());
                 
             if (apiRole.Index.HasValue)
                 builder.SigningOrder(apiRole.Index.Value);

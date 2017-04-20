@@ -134,6 +134,31 @@ namespace SDK.Tests
 					.Build ();
 		}
 
+        [Test]
+        public void ProvidingExternalSigningAuth() 
+        {
+            Silanis.ESL.SDK.Signer signer = SignerBuilder.NewSignerWithEmail ("billy@bob.com")
+                .WithFirstName ("Billy")
+                .WithLastName ("Bob")
+                .WithExternalSigningAuth (ExternalSigningAuthBuilder.ForProvider ("DIGIPASS")
+                    .WithIdentityInfo("Xz3AwPp9xazJ0ku5CZnlmgAx2DlJJGw0k0kd8SHkAeT"))
+                .Build ();
+
+            Assert.AreEqual ("DIGIPASS", signer.ExternalSigningAuth.ProviderKey);
+            Assert.AreEqual ("Xz3AwPp9xazJ0ku5CZnlmgAx2DlJJGw0k0kd8SHkAeT", signer.ExternalSigningAuth.IdentityInfo);
+        }
+
+        [Test]
+        [ExpectedException(typeof(EslException))]
+        public void EmptyPayloadNotAllowed()
+        {
+            SignerBuilder.NewSignerWithEmail ("billy@bob.com")
+                .WithFirstName ("Billy")
+                .WithLastName ("Bob")
+                .WithExternalSigningAuth (ExternalSigningAuthBuilder.ForProvider (" "))
+                .Build ();
+        }
+
 		[Test]
 		public void CanConfigureSignedDocumentDelivery()
 		{
