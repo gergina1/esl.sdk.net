@@ -64,6 +64,13 @@ namespace Silanis.ESL.SDK
             get; set;
         }
 
+        /// <summary>
+        /// 
+        /// This feature is not yet completed.
+        /// It is NOT recommended to be used it right now, because we expect some changes in model.
+        /// 
+        /// </summary>
+        /// <value>The external signing auth.</value>
         public ExternalSigningAuth ExternalSigningAuth
         {
             get;set;

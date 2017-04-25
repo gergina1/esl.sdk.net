@@ -5,6 +5,12 @@ using Silanis.ESL.SDK.Builder;
 
 namespace SDK.Examples
 {
+    /// <summary>
+    /// External signing auth example.
+    /// 
+    /// This feature is not yet completed.
+    /// It is NOT recommended to be used it right now, because we expect some changes in model.
+    /// </summary>
     public class ExternalSigningAuthExample : SDKSample
     {
         public static void Main(string[] args)
