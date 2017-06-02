@@ -23,7 +23,7 @@ using System.Runtime.CompilerServices;
 // The following attributes are used to specify the signing key for the assembly, 
 // if desired. See the Mono documentation for more information about signing.
 
-//[assembly: AssemblyDelaySign(false)]
+[assembly: AssemblyDelaySign(true)]
 //[assembly: AssemblyKeyFile("")]
 
 // This allows us to write unit tests in the Silanis.ESL.SDK.Test project that can access internal classes (ie. API model)
